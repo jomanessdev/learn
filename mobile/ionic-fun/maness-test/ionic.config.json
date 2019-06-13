@@ -1,0 +1,7 @@
+{
+  "name": "maness-test",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
