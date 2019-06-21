@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_course/custom_drawer.dart';
 
 import '../product_manager.dart';
-import 'product_admin.dart';
 
 class ProductsPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        drawer: CustomDrawer('Manage Products',ProductAdminPage()),
+        drawer: CustomDrawer('Manage Products','/admin'),
         appBar: AppBar(
           title: Text('Flutter Course'),
         ),

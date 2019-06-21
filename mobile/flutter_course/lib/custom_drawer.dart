@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 
 class CustomDrawer extends StatelessWidget{
 
-  final Widget replacementPage;
   final String replacementPageTitle;
+  final String replacementPath;
 
-  CustomDrawer(this.replacementPageTitle, this.replacementPage);
+  CustomDrawer(this.replacementPageTitle, this.replacementPath);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CustomDrawer extends StatelessWidget{
             ListTile(
               title: Text(replacementPageTitle),
               onTap: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => replacementPage));
+                Navigator.pushReplacementNamed(context,replacementPath);
               },
             )
           ],),

@@ -4,15 +4,13 @@ import 'package:flutter_course/custom_drawer.dart';
 import 'package:flutter_course/pages/product_create_page.dart';
 import 'package:flutter_course/pages/product_list_page.dart';
 
-import 'products_page.dart';
-
 class ProductAdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-            drawer: CustomDrawer('View Products', ProductsPage()),
+            drawer: CustomDrawer('View Products', '/'),
             appBar: AppBar(
               title: Text('Product Management'),
               bottom: TabBar(
