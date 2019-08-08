@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course/pages/product_admin.dart';
+// import 'package:flutter/rendering.dart';
 
-import 'pages/productDetails_page.dart';
-import 'pages/products_page.dart';
+import './pages/auth.dart';
+import './pages/products_admin.dart';
+import './pages/products.dart';
+import './pages/product.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  // debugPaintSizeEnabled = true;
+  // debugPaintBaselinesEnabled = true;
+  // debugPaintPointersEnabled = true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -13,50 +20,59 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class _MyAppState extends State<MyApp>{
+class _MyAppState extends State<MyApp> {
+  List<Map<String, dynamic>> _products = [];
 
-  final List<Map<String,String>> _products = [];
-
-  void _addProduct(Map<String,String> product){
+  void _addProduct(Map<String, dynamic> product) {
     setState(() {
-     _products.add(product); 
+      _products.add(product);
     });
     print(_products);
   }
 
-  void _deleteProduct(int index){
+  void _deleteProduct(int index) {
     setState(() {
-     _products.removeAt(index); 
+      _products.removeAt(index);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
+      // debugShowMaterialGrid: true,
       theme: ThemeData(
+        brightness: Brightness.light,
         primarySwatch: Colors.teal,
-        accentColor: Colors.purple,
-        brightness: Brightness.light
+        accentColor: Colors.deepPurple,
+        buttonColor: Colors.deepPurple,
       ),
+      // home: AuthPage(),
       routes: {
-        '/': (BuildContext context) => ProductsPage(),
-        '/admin' : (BuildContext context) => ProductAdminPage()
+        '/': (BuildContext context) => AuthPage(),
+        '/products': (BuildContext context) => ProductsPage(_products),
+        '/admin': (BuildContext context) =>
+            ProductsAdminPage(_addProduct, _deleteProduct),
       },
-      onGenerateRoute: (RouteSettings settings){
-
+      onGenerateRoute: (RouteSettings settings) {
         final List<String> pathElements = settings.name.split('/');
-
-        if(pathElements[0] != ''){
-          print('You must place a forward slash before the route name. Skipping route command. ');
+        if (pathElements[0] != '') {
           return null;
         }
-
-        if(pathElements[1] == 'product'){
-          return MaterialPageRoute(builder: (BuildContext context) {
-                      return ProductDetails(_products[index]);
-                    });
+        if (pathElements[1] == 'product') {
+          final int index = int.parse(pathElements[2]);
+          return MaterialPageRoute<bool>(
+            builder: (BuildContext context) => ProductPage(
+                _products[index]['title'],
+                _products[index]['image'],
+                _products[index]['price'],
+                _products[index]['description']),
+          );
         }
         return null;
+      },
+      onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute(
+            builder: (BuildContext context) => ProductsPage(_products));
       },
     );
   }
