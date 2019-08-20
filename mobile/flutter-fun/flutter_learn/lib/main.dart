@@ -8,21 +8,38 @@ import 'camera_page.dart';
 import 'home_page.dart';
 import 'messages_page.dart';
 
-void main() => runApp(MyApp());
+import 'package:camera/camera.dart';
+
+Future<void> main() async{
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+
+  // Get a specific camera from the list of available cameras.
+  final firstCamera = cameras.first;
+
+  runApp(MyApp(firstCamera));
+
+}
 
 class MyApp extends StatelessWidget {
+
+  final camera;
+
+  MyApp(this.camera);
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-     home: MyAppWrapper(title: 'Learning is Fun'),
+     home: MyAppWrapper(title: 'Learning is Fun', camera: this.camera),
     );
   }
 }
 
 class MyAppWrapper extends StatefulWidget {
   final String title;
+  final camera;
 
-  MyAppWrapper({Key key, this.title}) : super(key: key);
+  MyAppWrapper({Key key, this.title, this.camera}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -34,7 +51,7 @@ class MyAppWrapperState extends State<MyAppWrapper> {
   var _selectedIndex = 0;
   final List<Widget> _pages = [
     MyHomePage(),
-    MyCameraPage(),
+    MyCameraPage(camera: widget.camera),
     MyCalendarPage(),
     MyBluetoothPage(),
     MyMessagesPage()
