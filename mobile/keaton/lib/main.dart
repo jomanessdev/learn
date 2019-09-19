@@ -19,14 +19,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       title: 'Prototype',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       initialRoute: ClothingPage.routeName,
       routes: {
         HomePage.routeName : (context) => HomePage(title: 'Home'),
-        ClothingPage.routeName: (context) => ClothingPage(title: 'Clothing'),
-        ToolsPage.routeName: (context) => ToolsPage(title: 'Tools'),
-        KitchenPage.routeName: (context) => KitchenPage(title: 'Kitchen'),
+        ClothingPage.routeName: (context) => ClothingPage(title: 'My Closet'),
+        ToolsPage.routeName: (context) => ToolsPage(title: 'My Toolbox'),
+        KitchenPage.routeName: (context) => KitchenPage(title: 'My Kitchen'),
         AddItemsPage.routeName: (context) => AddItemsPage(),
         ViewItemPage.routeName: (context) => ViewItemPage()
       },
