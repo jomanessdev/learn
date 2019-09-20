@@ -7,7 +7,9 @@ class ItemBase {
   final String name;
   final String description;
   final File image;
+  final category;
+  final String size;
 
-  ItemBase({@required this.id, @required this.name, @required this.description,@required this.image});
+  ItemBase({@required this.id, @required this.name, @required this.description,@required this.image, this.category, this.size});
 
 }

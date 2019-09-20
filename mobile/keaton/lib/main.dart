@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       initialRoute: ClothingPage.routeName,
       routes: {
         HomePage.routeName : (context) => HomePage(title: 'Home'),
-        ClothingPage.routeName: (context) => ClothingPage(title: 'Clothing'),
+        ClothingPage.routeName: (context) => ClothingPage(title: 'My Closet'),
         ToolsPage.routeName: (context) => ToolsPage(title: 'Tools'),
         KitchenPage.routeName: (context) => KitchenPage(title: 'Kitchen'),
         AddItemsPage.routeName: (context) => AddItemsPage(),
