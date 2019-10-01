@@ -61,14 +61,17 @@ class _AddItemsPageState extends State<AddItemsPage>{
               ),
             ),
           ),
-          RaisedButton.icon(
+          Container(
+            width: double.infinity,
+            child: RaisedButton.icon(
             icon: Icon(Icons.add),
             label: Text('Add Place'),
+            textColor: Colors.white,
             onPressed: _saveItem,
             elevation: 0,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             color: Theme.of(context).accentColor,
-          ),
+          )),
           ],
         ),
       ),

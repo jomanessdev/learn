@@ -38,4 +38,10 @@ class StoredItems with ChangeNotifier {
     _items = returnedValues.map((item) => ItemBase(id: item['id'], name: item['name'], description: item['description'],image: File(item['image']))).toList();
     notifyListeners();
   }
+
+  void deleteItem(String tableName, String itemId){
+    DBHelper.delete(tableName, itemId);
+    fetchItemsAndSet(tableName);
+    notifyListeners();
+  }
 }

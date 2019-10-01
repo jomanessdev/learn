@@ -19,4 +19,9 @@ class DBHelper {
     final sql.Database sqlDb = await DBHelper.database();
     return sqlDb.query(table);
   }
+
+  static Future<void> delete(String pickedTable, String pickedId) async{
+    final sql.Database sqlDb = await DBHelper.database();
+    return sqlDb.delete(pickedTable,where: 'id = ?',whereArgs: [pickedId]);
+  }
 }
