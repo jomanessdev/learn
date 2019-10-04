@@ -16,8 +16,9 @@ class ViewItemPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           // title: Text(selectedItem.name),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
           ),
-      body: Column( //TODO make this a listview so it can scroll
+      body: ListView(
         children: <Widget>[
           Container(
             width: double.infinity,
@@ -31,7 +32,6 @@ class ViewItemPage extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-        Expanded(child:
         Container(
             height: 500,
             width: double.infinity,
@@ -64,13 +64,61 @@ class ViewItemPage extends StatelessWidget {
               Tags(items: ['one','two','three', 'four','five','six','seven','eight','nine','ten'],),
               SizedBox(height: 20,),
               Container(width: double.infinity, child: Text('Details',textScaleFactor: 1.25, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w100))),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  height: 150,
-                color: Colors.green,
-              ))
-            ]))),
+              
+              //Details container
+              Container(
+                height: 200,
+                child:
+                  Container(
+                    decoration: BoxDecoration(border: Border.all(color: Colors.red, width: 3)),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            color: Colors.purple, 
+                            child: Column(
+                              children: <Widget>[
+
+                                //Begin first panel row
+                                Expanded(
+                                  child: Container(
+                                    color: Colors.blue,
+                                    width: double.infinity,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Expanded(child: Container(color: Colors.yellow)),
+                                        Expanded(child: Container(color: Colors.brown))
+                                      ]
+                                    )
+                                  )
+                                ),
+                                // End first panel row
+
+                                //Begin second panel row
+                                Expanded(
+                                  child: Container(
+                                    color: Colors.blue,
+                                    width: double.infinity,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Expanded(child: Container(color: Colors.orange)),
+                                        Expanded(child: Container(color: Colors.grey))
+                                      ]
+                                    )
+                                  )
+                                ),
+                                //End second panel row
+
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(child: Container(color: Colors.green.withOpacity(0.2)))
+                      ],
+                    )
+                  )
+              )
+            ])),
       ]),
     );
   }

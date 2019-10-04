@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       title: 'Prototype',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.deepPurple,
         fontFamily: 'Montserrat'
       ),
       initialRoute: ClothingPage.routeName,

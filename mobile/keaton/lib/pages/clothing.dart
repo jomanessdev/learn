@@ -66,6 +66,7 @@ class _ClothingPageState extends State<ClothingPage> {
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         elevation: 0.0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
