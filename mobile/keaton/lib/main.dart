@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Prototype',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
+        accentColor: Colors.blueGrey,
         fontFamily: 'Montserrat'
       ),
       initialRoute: ClothingPage.routeName,

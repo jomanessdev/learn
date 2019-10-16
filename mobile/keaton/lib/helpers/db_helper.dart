@@ -7,7 +7,7 @@ class DBHelper {
   static Future<sql.Database> database() async{
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase(path.join(dbPath,'${Constants.DB_NAME}'), onCreate: (db,version){
-      return db.execute('CREATE TABLE ${Constants.CLOTHING_TABLE}(id TEXT PRIMARY KEY, name TEXT, description TEXT, image TEXT)');
+      return db.execute('CREATE TABLE ${Constants.CLOTHING_TABLE}(id TEXT PRIMARY KEY, name TEXT, description TEXT, image TEXT, brand TEXT, colorName TEXT, season TEXT, purchasedDate TEXT, createdDate TEXT, lastWornDate TEXT, size TEXT, timesWorn TEXT)');
     }, version: 1);
   }
   static Future<void> insert(String table, Map<String,Object> data) async{

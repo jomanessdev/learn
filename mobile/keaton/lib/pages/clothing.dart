@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:keaton/helpers/camera_helper.dart';
 import 'package:keaton/pages/add_item_page.dart';
 import 'package:keaton/providers/stored_items.dart';
 import 'package:keaton/widgets/drawer/main_drawer.dart';
@@ -76,11 +77,15 @@ class _ClothingPageState extends State<ClothingPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() {
-          Navigator.pushNamed(context, AddItemsPage.routeName);
-        }),
-        tooltip: 'Add New Item',
-        child: Icon(Icons.add),
+        onPressed: () async {
+            final pictureFile = await CameraHelper.takePicture();
+            if(pictureFile == null){
+              return;
+            }
+            Navigator.of(context).pushNamed(AddItemsPage.routeName, arguments: pictureFile);
+          },
+          tooltip: 'Add New Item',
+          child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // drawer: MainDrawer(),

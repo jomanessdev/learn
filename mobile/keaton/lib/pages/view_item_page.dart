@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:keaton/providers/stored_items.dart';
+import 'package:keaton/widgets/item_details_container/item_details_container.dart';
 import 'package:keaton/widgets/tags/tags.dart';
 import 'package:provider/provider.dart';
 
 class ViewItemPage extends StatelessWidget {
   static const routeName = 'view-item';
+
+  //TODO 1. Add ability to change picture. 2. Add ability to add tags.
+
+  String _parseDate(String _inputDate){
+    DateTime dt = DateTime.parse(_inputDate);
+    return '${dt.month}.${dt.day}.${dt.year}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +21,7 @@ class ViewItemPage extends StatelessWidget {
     final selectedItem =
         Provider.of<StoredItems>(context, listen: false).findItemById(id);
 
+    print('!!!!!!!!!${selectedItem.toString()}');
     return Scaffold(
       appBar: AppBar(
           // title: Text(selectedItem.name),
@@ -61,62 +70,23 @@ class ViewItemPage extends StatelessWidget {
                 indent: 5,
                 endIndent: 5,
               ),
-              Tags(items: ['one','two','three', 'four','five','six','seven','eight','nine','ten'],),
+              Tags(items: [selectedItem.colorName, selectedItem.season],),
               SizedBox(height: 20,),
               Container(width: double.infinity, child: Text('Details',textScaleFactor: 1.25, style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w100))),
-              
-              //Details container
-              Container(
-                height: 200,
-                child:
-                  Container(
-                    decoration: BoxDecoration(border: Border.all(color: Colors.red, width: 3)),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Container(
-                            color: Colors.purple, 
-                            child: Column(
-                              children: <Widget>[
-
-                                //Begin first panel row
-                                Expanded(
-                                  child: Container(
-                                    color: Colors.blue,
-                                    width: double.infinity,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Expanded(child: Container(color: Colors.yellow)),
-                                        Expanded(child: Container(color: Colors.brown))
-                                      ]
-                                    )
-                                  )
-                                ),
-                                // End first panel row
-
-                                //Begin second panel row
-                                Expanded(
-                                  child: Container(
-                                    color: Colors.blue,
-                                    width: double.infinity,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Expanded(child: Container(color: Colors.orange)),
-                                        Expanded(child: Container(color: Colors.grey))
-                                      ]
-                                    )
-                                  )
-                                ),
-                                //End second panel row
-
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(child: Container(color: Colors.green.withOpacity(0.2)))
-                      ],
-                    )
-                  )
+              Expanded(
+                // height: double.infinity,
+                // width: double.infinity,
+                child: 
+                  GridView.count(
+                    crossAxisCount: 2,
+                    children: <Widget>[
+                      ItemDetailsContainer('Brand', selectedItem.brand, Icons.bookmark_border),
+                      ItemDetailsContainer('Purchased', this._parseDate(selectedItem.createdDate), Icons.shopping_cart),
+                      ItemDetailsContainer('Size', selectedItem.size, Icons.straighten),
+                      ItemDetailsContainer('Times Worn', selectedItem.timesWorn.toString(), Icons.repeat)
+                    ],
+                  ),
+                  // Container(child: Text('LAST TIME WORN'),)
               )
             ])),
       ]),
