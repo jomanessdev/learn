@@ -3,23 +3,24 @@ class Constants{
   static final String DB_NAME = 'keaton.db';
 
   //Colors
-  static final String BLUE = 'BLUE';
-  static final String RED = 'RED';
-  static final String GREEN = 'GREEN';
-  static final String BLACK = 'BLACK';
-  static final String BROWN = 'BROWN';
-  static final String PURPLE = 'PURPLE';
-  static final String PINK = 'PINK';
-  static final String YELLOW = 'YELLOW';
-  static final String ORANGE = 'ORANGE';
-  static final String GREY = 'GREY';
-  static final String WHITE = 'WHITE';
+  static const String BLUE = 'BLUE';
+  static const String RED = 'RED';
+  static const String GREEN = 'GREEN';
+  static const String BLACK = 'BLACK';
+  static const String BROWN = 'BROWN';
+  static const String PURPLE = 'PURPLE';
+  static const String PINK = 'PINK';
+  static const String YELLOW = 'YELLOW';
+  static const String ORANGE = 'ORANGE';
+  static const String GREY = 'GREY';
+  static const String WHITE = 'WHITE';
 
   // Seasons
-    static final String WINTER = 'WINTER';
-    static final String SPRING = 'SPRING';
-    static final String SUMMER = 'SUMMER';
-    static final String FALL = 'FALL';
+    static const String WINTER = 'WINTER';
+    static const String SPRING = 'SPRING';
+    static const String SUMMER = 'SUMMER';
+    static const String FALL = 'FALL';
+    static const String ANY_SEASON = 'ANY_SEASON';
 
   // Clothing Types
     static final String SHIRT = 'SHIRT';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:keaton/constants/constants.dart';
+import 'package:keaton/helpers/color_icon_helper.dart';
 
 class ColorPicker extends StatefulWidget {
 
@@ -16,7 +17,6 @@ class ColorPicker extends StatefulWidget {
 
 class ColorPickerState extends State<ColorPicker> {
   String selectedColor;
-  Color highLightColor = Colors.yellow;
   double circleSize = 30;
 
   void _setColor(String color) {
@@ -36,11 +36,11 @@ class ColorPickerState extends State<ColorPicker> {
         children: <Widget>[
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.green, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.GREEN, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.GREEN)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -52,11 +52,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.blue, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.BLUE, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.BLUE)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -68,11 +68,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.red, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.RED, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.RED)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -84,11 +84,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.pink, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.PINK, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.PINK)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -100,11 +100,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.orange, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.ORANGE, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.ORANGE)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -116,11 +116,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.purple, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.PURPLE, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.PURPLE)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -132,11 +132,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.black, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.BLACK, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.BLACK)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -148,11 +148,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.grey, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.GREY, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.GREY)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -164,11 +164,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.brown, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.BROWN, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.BROWN)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -180,11 +180,11 @@ class ColorPickerState extends State<ColorPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_1, color: Colors.yellow, size: this.circleSize,),
+              child: ColorIconHelper.giveMeTheColorIcon(Constants.YELLOW, this.circleSize),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedColor == Constants.YELLOW)
-                  ? Colors.grey
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),

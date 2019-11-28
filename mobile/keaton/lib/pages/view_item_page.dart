@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:keaton/pages/clothing.dart';
 import 'package:keaton/providers/stored_items.dart';
 import 'package:keaton/widgets/item_details_container/item_details_container.dart';
 import 'package:keaton/widgets/tags/tags.dart';
@@ -25,6 +26,9 @@ class ViewItemPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           // title: Text(selectedItem.name),
+          leading: IconButton(icon: Icon(Icons.arrow_back),onPressed: (){
+            Navigator.of(context).pushReplacementNamed(ClothingPage.routeName);
+          },),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
           ),
       body: ListView(

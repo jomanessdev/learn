@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:keaton/constants/constants.dart';
+import 'package:keaton/helpers/season_icon_helper.dart';
 
 class SeasonPicker extends StatefulWidget {
 
@@ -16,7 +17,6 @@ class SeasonPicker extends StatefulWidget {
 
 class SeasonPickerState extends State<SeasonPicker> {
   String selectedSeason;
-  Color highLightColor = Colors.blueGrey;
   double iconSize = 24;
 
   void _setSeason(String season) {
@@ -33,11 +33,11 @@ class SeasonPickerState extends State<SeasonPicker> {
         children: <Widget>[
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.ac_unit, color: Colors.lightBlue, size: this.iconSize,),
+              child: SeasonIconHelper.giveMeTheSeasonIcon(Constants.WINTER),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedSeason == Constants.WINTER)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -49,12 +49,11 @@ class SeasonPickerState extends State<SeasonPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.filter_vintage
-              , color: Colors.green, size: this.iconSize,),
+              child: SeasonIconHelper.giveMeTheSeasonIcon(Constants.SPRING),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedSeason == Constants.SPRING)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -66,11 +65,11 @@ class SeasonPickerState extends State<SeasonPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.brightness_5, color: Colors.yellow, size: this.iconSize,),
+              child: SeasonIconHelper.giveMeTheSeasonIcon(Constants.SUMMER),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedSeason == Constants.SUMMER)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -82,11 +81,11 @@ class SeasonPickerState extends State<SeasonPicker> {
           ),
           GestureDetector(
             child: Ink(
-              child: Icon(Icons.terrain, color: Colors.green, size: this.iconSize,),
+              child: SeasonIconHelper.giveMeTheSeasonIcon(Constants.FALL),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: (this.selectedSeason == Constants.FALL)
-                  ? this.highLightColor
+                  ? Theme.of(context).highlightColor
                   : null,
               ),
             ),
@@ -96,6 +95,22 @@ class SeasonPickerState extends State<SeasonPicker> {
               });
             },
           ),
+          GestureDetector(
+            child: Ink(
+              child: SeasonIconHelper.giveMeTheSeasonIcon(Constants.ANY_SEASON),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: (this.selectedSeason == Constants.ANY_SEASON)
+                  ? Theme.of(context).highlightColor
+                  : null,
+              ),
+            ),
+            onTap: () {
+              setState(() {
+                this._setSeason(Constants.ANY_SEASON);
+              });
+            },
+          )
         ], crossAxisCount: 2,
     );
   }
