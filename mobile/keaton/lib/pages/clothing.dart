@@ -167,7 +167,7 @@ class _ClothingPageState extends State<ClothingPage> {
                                     padding: EdgeInsets.all(5),
                                     decoration: BoxDecoration(
                                         boxShadow: [
-                                          BoxShadow(color: Colors.grey.withOpacity(1), blurRadius: 2, spreadRadius:1, offset: Offset.fromDirection(120))
+                                          BoxShadow(color: Colors.grey.withOpacity(0.3), blurRadius: 1, spreadRadius:1, offset: Offset.fromDirection(120))
                                         ],
                                         color: Colors.white,
                                         borderRadius: BorderRadius.all(
