@@ -309,7 +309,6 @@ class _AddItemsPageState extends State<AddItemsPage> {
                               timesWorn: '0'
                             );
                             Provider.of<StoredItems>(context, listen: false).addItem(_newClothingItem);
-                            print('!!!!SUB!!!!!${_newClothingItem.toString()}');
                             Navigator.of(context).pop();
                             Navigator.of(context).pushReplacementNamed(
                                         ViewItemPage.routeName,
