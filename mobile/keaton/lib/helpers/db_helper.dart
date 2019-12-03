@@ -7,7 +7,7 @@ class DBHelper {
   static Future<sql.Database> database() async{
     final dbPath = await sql.getDatabasesPath();
     return sql.openDatabase(path.join(dbPath,'${Constants.DB_NAME}'), onCreate: (db,version){
-      return db.execute('CREATE TABLE ${Constants.CLOTHING_TABLE}(id TEXT PRIMARY KEY, ${Constants.NAME_COLUMN_NAME} TEXT, ${Constants.DESCRIPTION_COLUMN_NAME} TEXT, ${Constants.IMAGE_COLUMN_NAME} TEXT, ${Constants.BRAND_COLUMN_NAME} TEXT, ${Constants.COLORNAME_COLUMN_NAME} TEXT, ${Constants.SEASON_COLUMN_NAME} TEXT, ${Constants.PURCHASEDDATE_COLUMN_NAME} TEXT, ${Constants.CREATEDDATE_COLUMN_NAME} TEXT, ${Constants.LASTWORNDATE_COLUMN_NAME} TEXT, ${Constants.SIZE_COLUMN_NAME} TEXT, ${Constants.TIMESWORN_COLUMN_NAME} TEXT)');
+      return db.execute('CREATE TABLE ${Constants.CLOTHING_TABLE}(id TEXT PRIMARY KEY, ${Constants.NAME_COLUMN_NAME} TEXT, ${Constants.DESCRIPTION_COLUMN_NAME} TEXT, ${Constants.IMAGE_COLUMN_NAME} TEXT, ${Constants.BRAND_COLUMN_NAME} TEXT, ${Constants.COLORNAME_COLUMN_NAME} TEXT, ${Constants.SEASON_COLUMN_NAME} TEXT, ${Constants.PURCHASEDDATE_COLUMN_NAME} TEXT, ${Constants.CREATEDDATE_COLUMN_NAME} TEXT, ${Constants.LASTWORNDATE_COLUMN_NAME} TEXT, ${Constants.SIZE_COLUMN_NAME} TEXT, ${Constants.TIMESWORN_COLUMN_NAME} TEXT, ${Constants.TYPE_COLUMN_NAME} TEXT)');
     }, version: 1);
   }
   static Future<void> insert(String table, Map<String,Object> data) async{
@@ -38,6 +38,11 @@ class DBHelper {
   static Future<List<Map<String, dynamic>>> getAllSizes() async{
     final sql.Database sqlDb = await DBHelper.database();
     return sqlDb.rawQuery('SELECT ${Constants.SIZE_COLUMN_NAME} FROM ${Constants.CLOTHING_TABLE}');
+  } 
+
+  static Future<List<Map<String, dynamic>>> getAllTypes() async{
+    final sql.Database sqlDb = await DBHelper.database();
+    return sqlDb.rawQuery('SELECT ${Constants.TYPE_COLUMN_NAME} FROM ${Constants.CLOTHING_TABLE}');
   } 
 
   static Future<List<Map<String, dynamic>>> customQuery(String _customQuery) async{

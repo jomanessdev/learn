@@ -8,6 +8,7 @@ import 'package:keaton/providers/stored_items.dart';
 import 'package:keaton/widgets/color/color_picker.dart';
 import 'package:keaton/widgets/image/image_input.dart';
 import 'package:keaton/widgets/season/season_picker.dart';
+import 'package:keaton/widgets/type_picker/type_picker.dart';
 import 'package:provider/provider.dart';
 
 class AddItemsPage extends StatefulWidget {
@@ -27,10 +28,12 @@ class _AddItemsPageState extends State<AddItemsPage> {
   bool titleValid = true;
   bool brandValid = true;
   bool sizeValid = true; 
+  bool typeValid = true;
 
   File selectedImage;
   String selectedColor;
   String selectedSeason;
+  String selectedType;
 
   void setColorCallback(String _color) {
     setState(() {
@@ -41,6 +44,12 @@ class _AddItemsPageState extends State<AddItemsPage> {
   void setSeasonCallback(String _season) {
     setState(() {
       this.selectedSeason = _season;
+    });
+  }
+
+  void setTypeCallback(String _type){
+    setState(() {
+      this.selectedType = _type;
     });
   }
 
@@ -213,7 +222,7 @@ class _AddItemsPageState extends State<AddItemsPage> {
         barrierDismissible: false,
         context: context,
         builder: (context) => SimpleDialog(
-              title: Text("When would you wear this item?"),
+              title: Text("When season would you wear this item?"),
               children: <Widget>[
                 Container(
                   width: 400,
@@ -274,6 +283,46 @@ class _AddItemsPageState extends State<AddItemsPage> {
                       },
                     ),
                     RaisedButton(
+                      child: Text('Next'),
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        if(this._itemSizeController.text != null && this._itemSizeController.text.isNotEmpty){
+                          Navigator.of(context).pop();
+                          this._openTypeWizard();
+                        }
+                      },
+                    )
+                  ],
+                )
+              ],
+            ));
+  }
+
+  void _openTypeWizard() {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => SimpleDialog(
+              title: Text("What is this item?"),
+              children: <Widget>[
+                Container(
+                    height: 200,
+                    width: 400,
+                    padding: EdgeInsets.all(5),
+                    child: TypePicker(this.setTypeCallback),
+                ),                  
+                ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text('Back'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                            this._openSeasonWizard();                      
+                      },
+                    ),
+                    RaisedButton(
                       child: Text('Submit'),
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
@@ -290,10 +339,9 @@ class _AddItemsPageState extends State<AddItemsPage> {
                           && this.selectedSeason.isNotEmpty
                           && this.selectedSeason != null
                           && this.selectedImage != null
+                          && this.selectedType != null
+                          && this.selectedType.isNotEmpty
                         ){
-                            setState(() {
-                              this.sizeValid = true;
-                            });
                             ClothingItem _newClothingItem = new ClothingItem(
                               id: DateTime.now().toString()+this._titleController.text,
                               description: '',
@@ -306,18 +354,15 @@ class _AddItemsPageState extends State<AddItemsPage> {
                               createdDate: DateTime.now().toString(),
                               lastWornDate: DateTime.now().toString(),
                               purchasedDate: DateTime.now().toString(),
-                              timesWorn: '0'
+                              timesWorn: '0',
+                              type: this.selectedType
                             );
                             Provider.of<StoredItems>(context, listen: false).addItem(_newClothingItem);
                             Navigator.of(context).pop();
                             Navigator.of(context).pushReplacementNamed(
                                         ViewItemPage.routeName,
                                         arguments: _newClothingItem.id);
-                          } else {
-                          setState(() {
-                            this.sizeValid = false;
-                          });
-                        }
+                          }
                       },
                     )
                   ],

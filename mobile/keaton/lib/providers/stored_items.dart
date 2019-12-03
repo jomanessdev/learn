@@ -13,6 +13,7 @@ class StoredItems with ChangeNotifier {
   List<String> _brands = [];
   List<String> _colors = [];
   List<String> _sizes = [];
+  List<String> _types = [];
 
 
   List<ClothingItem> get items {
@@ -31,6 +32,10 @@ class StoredItems with ChangeNotifier {
     return [..._sizes];
   }
 
+  List<String> get types{
+    return [..._types];
+  }
+
   void updateFilterValue(String columnName, String filterValue){
     FilterMeta _filterMeta = this.filters.firstWhere((_filterMeta) => _filterMeta.columnName == columnName, orElse: () => null);
 
@@ -40,7 +45,6 @@ class StoredItems with ChangeNotifier {
     }else{
       _filterMeta.selectedFilterValues.add(filterValue);
     }
-    print('done adding filter: ${filters.length}');
     filters.forEach((f) => {
       print('${f.columnName}: ${f.selectedFilterValues.length}')
     });
@@ -48,7 +52,6 @@ class StoredItems with ChangeNotifier {
 
   void removeFilterValue(String columnName, String filterValue){
     this.filters.firstWhere((_filterMeta) => _filterMeta.columnName == columnName).selectedFilterValues.remove(filterValue);
-    print('done removing filter: ${filters.length}');
     filters.forEach((f) => {
       print('${f.columnName}: ${f.selectedFilterValues.length}')
     });
@@ -59,14 +62,12 @@ class StoredItems with ChangeNotifier {
     _filters.forEach((filter) => {
       this.filters.add(filter)
     });
-    print('done adding filters');
   }
 
   void removeFilters(Set<FilterMeta> _filters){
     _filters.forEach((filter) => {
       this.filters.remove(filter)
     });
-    print('done removing filters');
   }
 
   bool checkIfFilterValueExists(String columnName, String value){
@@ -101,6 +102,7 @@ class StoredItems with ChangeNotifier {
       'size': _inputItem.size,
       'season': _inputItem.season,
       'timesWorn': _inputItem.timesWorn,
+      'type': _inputItem.type
     });
   }
 
@@ -119,7 +121,8 @@ class StoredItems with ChangeNotifier {
       lastWornDate: item['lastWornDate'], 
       purchasedDate: item['purchasedDate'], 
       size: item['size'], 
-      timesWorn: item['timesWorn']
+      timesWorn: item['timesWorn'],
+      type: item['type']
     )).toList();
     notifyListeners();
   }
@@ -157,18 +160,25 @@ class StoredItems with ChangeNotifier {
     notifyListeners();
   }
 
+  Future fetchAllTypes(String tableName) async{
+    final returnedValues = await DBHelper.getAllTypes();
+    _types = [];
+    returnedValues.forEach((item) => {
+      _types.add(item['type'])
+    });
+    notifyListeners();
+  }
+
   Future updateFilterAndFetchResults(String tableName) async{
 
     bool allFiltersAreEmpty = true;
     FilterMeta _filterMeta = this.filters.firstWhere((_filter) => _filter.selectedFilterValues.length > 0,orElse: () => null);
 
     if(_filterMeta != null ) {
-      print('not all filters are empty');
       allFiltersAreEmpty = false ;
     }
 
     if(allFiltersAreEmpty){
-      print('all filters are empty...RESETING list');
       this.fetchItemsAndSet(tableName);
     }
 
@@ -200,7 +210,8 @@ class StoredItems with ChangeNotifier {
       lastWornDate: item['lastWornDate'], 
       purchasedDate: item['purchasedDate'], 
       size: item['size'], 
-      timesWorn: item['timesWorn']
+      timesWorn: item['timesWorn'],
+      type: item['type']
     )).toList();
     notifyListeners();
     }

@@ -149,23 +149,41 @@ class _ClothingPageState extends State<ClothingPage> {
                 )
               ],
             ));
-
   }
 
-  void _openMoreFiltersWizard() {
+  void _openTypeFilter() {
     showDialog(
         barrierDismissible: false,
         context: context,
         builder: (context) => SimpleDialog(
-              title: Text("What would you like to filter on?"),
+              title: Text("Select Type(s)"),
               children: <Widget>[
-                Text('He;;p'),
+                Container(
+                  child: FutureBuilder(
+      future: Provider.of<StoredItems>(context, listen: false).fetchAllTypes(Constants.CLOTHING_TABLE),
+      builder: (context, snapshot) => 
+        snapshot.connectionState == ConnectionState.waiting ? Center(child: CircularProgressIndicator()) 
+        : Consumer<StoredItems>(
+            child: Center(child: Text('Could not load any types'),),
+            builder: (context, storedItems, child) => storedItems.types.length <= 0
+            ? child : Container(
+                        width: 400,
+                        height: 200,
+                        child:
+                          FilterList(Constants.TYPE_COLUMN_NAME, storedItems.types, () => {
+                          })
+                      )
+                    )
+                  )
+                ),
                 ButtonBar(
                   alignment: MainAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton(
-                      child: Text('Cancel'),
+                      color: Theme.of(context).buttonColor,
+                      child: Text('Ok'),
                       onPressed: () {
+                        Provider.of<StoredItems>(context).updateFilterAndFetchResults(Constants.CLOTHING_TABLE);
                         Navigator.of(context).pop();
                       },
                     ),
@@ -245,7 +263,7 @@ class _ClothingPageState extends State<ClothingPage> {
                             FlatButton.icon(
                               icon: Icon(Icons.store),
                               label: Text('Type'),
-                              onPressed: _openMoreFiltersWizard,
+                              onPressed: _openTypeFilter,
                               textColor: Colors.grey.withOpacity(1),
                             )
                           ],),
@@ -259,7 +277,6 @@ class _ClothingPageState extends State<ClothingPage> {
                       ? child
                       : 
                         Column(
-                          
                           children: <Widget>[
                           Row(
                             children: <Widget>[
@@ -284,7 +301,7 @@ class _ClothingPageState extends State<ClothingPage> {
                             FlatButton.icon(
                               icon: Icon(Icons.store),
                               label: Text('Type'),
-                              onPressed: _openMoreFiltersWizard,
+                              onPressed: _openTypeFilter,
                               textColor: Colors.grey.withOpacity(1),
                             )
                           ],),

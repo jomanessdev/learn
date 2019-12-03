@@ -19,10 +19,7 @@ class ViewItemPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context).settings.arguments;
-    final selectedItem =
-        Provider.of<StoredItems>(context, listen: false).findItemById(id);
-
-    print('!!!!!!!!!${selectedItem.toString()}');
+    final selectedItem = Provider.of<StoredItems>(context, listen: false).findItemById(id);
     return Scaffold(
       appBar: AppBar(
           // title: Text(selectedItem.name),

@@ -13,6 +13,8 @@ class Constants{
   static const String LASTWORNDATE_COLUMN_NAME = 'lastWornDate';
   static const String SIZE_COLUMN_NAME = 'size';
   static const String TIMESWORN_COLUMN_NAME = 'timesWorn';
+  static const String TYPE_COLUMN_NAME = 'type';
+
 
   //Colors
   static const String BLUE = 'BLUE';
@@ -27,27 +29,20 @@ class Constants{
   static const String GREY = 'GREY';
   static const String WHITE = 'WHITE';
 
+  //Types
+  static const String SHORT_SHIRT = 'SHORT_SHIRT';
+  static const String LONG_SHIRT = 'LONG_SHIRT';
+  static const String PANTS = 'PANTS';
+  static const String SUIT = 'SUIT';
+  static const String DRESS = 'DRESS';
+  static const String SHORTS = 'SHORTS';
+  static const String SHOES = 'SHOES';
+  static const String ACCESSORIES = 'ACCESSORIES';
+
   // Seasons
     static const String WINTER = 'WINTER';
     static const String SPRING = 'SPRING';
     static const String SUMMER = 'SUMMER';
     static const String FALL = 'FALL';
     static const String ANY_SEASON = 'ANY_SEASON';
-
-  // Clothing Types
-    static const String SHIRT = 'SHIRT';
-    static const String PANTS = 'PANTS';
-    static const String BELT = 'BELT';
-    static const String BLOUSE = 'BLOUSE';
-    static const String DRESS = 'DRESS';
-    static const String ACC = 'ACC';
-    static const String SANDALS = 'SANDALS';
-    static const String HEELS = 'HEELS';
-    static const String SHOES = 'SHOES';
-
-
-
-
-
-
 }
